@@ -1,4 +1,4 @@
-from config import  VehicleConfig, OptimizeConfig
+from config import VehicleConfig, OptimizeConfig
 from gridmap import GridMap
 from geometry import get_polygon_halfspaces, Polygon
 import casadi as ca
@@ -65,7 +65,7 @@ class Optimizer:
         if self.N < 5:
             raise ValueError("init trajectory too short.")
 
-        self.DT = (init_se2guess[1].t - init_se2guess[0].t) * 2
+        self.DT = abs(init_se2guess[1].t - init_se2guess[0].t)
 
         self.obstacles = obstacles_list
         for obstacle in obstacles_list:

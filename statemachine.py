@@ -142,6 +142,12 @@ class Planing(State):
             #     vehicle.current_se2state, vehicle.goal_se2state, vehicle.gridmap
             # )
 
+            # plt.figure(10, figsize=[8, 8])
+            utils.plot_path(path, "a star")
+            utils.plot_trajectory_animation(path)
+            plt.draw()
+            plt.pause(0.1)
+
             ctrl_cfg = ControlConfig()
             interval = int((path[1].t - path[0].t) / ctrl_cfg.dt) - 1
             if interval > 3:
@@ -375,7 +381,7 @@ def main():
     veh = Vehicle()
     veh.initialize()
 
-    TASK_NUM = 1
+    TASK_NUM = 0
     veh.file_name = "se2path" + str(TASK_NUM) + ".pickle"
     start_states = [SE2State(4, 15, -3.12), SE2State(15.90, 14.03, 0.38)]
 
@@ -387,7 +393,7 @@ def main():
     random start, random dynamics obstacles.
     """
     start_se2state
-    start_perception_index = random.randint(10, 20)
+    start_perception_index = random.randint(3, 10)
     count = 0
 
     while True:
